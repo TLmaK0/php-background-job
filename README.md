@@ -26,7 +26,8 @@ RunInBackground::execute_onrequest($_REQUEST);
 
 Then include your runinbackground.php in your normal script
 
-´´´php
+```php
 $job = new RunInBackground(Array("param1"=>"param2"));
 $job->start();
 ```
+
