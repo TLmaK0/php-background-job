@@ -27,7 +27,28 @@ RunInBackground::execute_onrequest($_REQUEST);
 Then include your runinbackground.php in your normal script
 
 ```php
-$job = new RunInBackground(Array("param1"=>"param2"));
+$job = new RunInBackground(Array("param1"=>"value1"));
 $job->start();
 ```
 
+Send more complex data with json
+
+```php
+...
+  public static function execute($json_data){
+    $params = json_decode($json_data);
+    //run your background or split in more background jobs with $job = new RunInBackground($newParams); $job->start();
+  }
+}
+RunInBackground::execute_onrequest(file_get_contents('php://input'));
+...
+...
+$job = new RunInBackground(json_encode(Array("param1"=>"value1", "param3"=>Array("param4"=>"value4"))));
+...
+```
+
+Enable debug mode with:
+
+```php
+define('BACKGROUND_JOB_DEBUG', true);
+```

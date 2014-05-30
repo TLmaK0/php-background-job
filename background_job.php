@@ -68,8 +68,10 @@ class BackgroundJob{
     
     curl_setopt($curl, CURLOPT_URL, $url);
     curl_setopt($curl, CURLOPT_FRESH_CONNECT, true);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($curl, CURLOPT_NOSIGNAL, 1);
     
-    if(!$debug) curl_setopt($curl, CURLOPT_TIMEOUT_MS, 1000);    
+    if(!$debug) curl_setopt($curl, CURLOPT_TIMEOUT_MS, 100);    
     
     curl_setopt($curl, CURLOPT_POST, count($params));
     curl_setopt($curl, CURLOPT_POSTFIELDS, $params);
